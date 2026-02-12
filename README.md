@@ -288,13 +288,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 👥 Team
-
-- **Ronit Jain** - [@ronitjain7](https://github.com/ronitjain7)
-- **Ashraf** - [@AshrafGalaxy](https://github.com/AshrafGalaxy)
-
----
-
 ## 🙏 Acknowledgments
 
 - **Algorand Foundation** for the blockchain infrastructure
