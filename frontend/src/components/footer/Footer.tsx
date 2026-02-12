@@ -11,37 +11,35 @@ const Footer = () => {
           <li>
             <a
               target="blank"
-              href="mailto:hello@simmmple.com"
+              href="https://github.com/ronitjain7/VeriGrant-_AI-Powered-Transparent-Scholarship-Aid-Distribution"
               className="text-base font-medium text-gray-600 hover:text-gray-600"
             >
-              Support
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href="/admin/apply"
+              className="text-base font-medium text-gray-600 hover:text-gray-600"
+            >
+              Apply Now
+            </a>
+          </li>
+          <li>
+            <a
+              href="/admin/public-audit"
+              className="text-base font-medium text-gray-600 hover:text-gray-600"
+            >
+              Transparency
             </a>
           </li>
           <li>
             <a
               target="blank"
-              href="https://simmmple.com/licenses"
+              href="https://algorand.com"
               className="text-base font-medium text-gray-600 hover:text-gray-600"
             >
-              License
-            </a>
-          </li>
-          <li>
-            <a
-              target="blank"
-              href="https://simmmple.com/terms-of-service"
-              className="text-base font-medium text-gray-600 hover:text-gray-600"
-            >
-              Terms of Use
-            </a>
-          </li>
-          <li>
-            <a
-              target="blank"
-              href="https://blog.horizon-ui.com/"
-              className="text-base font-medium text-gray-600 hover:text-gray-600"
-            >
-              Blog
+              Powered by Algorand
             </a>
           </li>
         </ul>
