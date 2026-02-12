@@ -55,24 +55,6 @@ const Navbar = (props: {
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
-        <div className="h-6 w-[224px] pt-1">
-          <a
-            className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href=" "
-          >
-            Pages
-            <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
-              {' '}
-              /{' '}
-            </span>
-          </a>
-          <NavLink
-            className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href="#"
-          >
-            {brandText}
-          </NavLink>
-        </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
           <NavLink
             href="#"
@@ -157,24 +139,9 @@ const Navbar = (props: {
             <div className="mt-3 h-px w-full bg-gray-200 dark:bg-white/20 " />
 
             <div className="ml-4 mt-3 flex flex-col">
-              <a
-                href=" "
-                className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
-              >
-                Profile Settings
-              </a>
-              <a
-                href=" "
-                className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
-              >
-                Newsletter Settings
-              </a>
-              <a
-                href=" "
-                className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
-              >
-                Log Out
-              </a>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {isConnected ? 'Wallet Connected' : 'Connect your wallet to get started'}
+              </p>
             </div>
           </div>
         </Dropdown>
