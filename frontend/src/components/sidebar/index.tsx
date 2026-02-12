@@ -19,14 +19,21 @@ function SidebarHorizon(props: { routes: IRoute[];[x: string]: any }) {
         <HiX />
       </span>
 
-      <div className={`mx-[56px] mt-[50px] flex items-center`}>
-        <div className="ml-1 mt-1 h-2.5 font-poppins text-[26px] font-bold text-navy-700 dark:text-white">
-          Veri<span className="text-brand-500">Grant</span>
+      {/* Logo Section */}
+      <div className="mx-6 mt-12 mb-7 flex items-center justify-center">
+        <div className="flex items-baseline gap-0">
+          <span className="text-3xl font-bold text-navy-700 dark:text-white tracking-tight">
+            Veri
+          </span>
+          <span className="text-3xl font-bold text-brand-500 tracking-tight">
+            Grant
+          </span>
         </div>
       </div>
-      <div className="mb-7 mt-[58px] h-px bg-gray-300 dark:bg-white/30" />
-      {/* Nav item */}
 
+      <div className="mx-6 mb-7 h-px bg-gray-300 dark:bg-white/30" />
+
+      {/* Nav item */}
       <ul className="mb-auto pt-1">
         <Links routes={routes} />
       </ul>
