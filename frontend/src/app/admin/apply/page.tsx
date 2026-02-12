@@ -26,16 +26,83 @@ const ApplyPage = () => {
         essay: ''
     });
 
+    const [formErrors, setFormErrors] = useState<any>({});
+
     const handleInputChange = (e: any) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value });
+        const { id, value } = e.target;
+        setFormData({ ...formData, [id]: value });
+        // Clear error for this field
+        if (formErrors[id]) {
+            setFormErrors({ ...formErrors, [id]: '' });
+        }
     };
 
-    const handleNext = () => setStep(step + 1);
+    const validateStep = (currentStep: number) => {
+        const errors: any = {};
+
+        if (currentStep === 1) {
+            if (!formData.fullName.trim()) {
+                errors.fullName = 'Full name is required';
+            } else if (formData.fullName.trim().length < 2) {
+                errors.fullName = 'Name must be at least 2 characters';
+            }
+
+            if (!formData.university.trim()) {
+                errors.university = 'University is required';
+            }
+
+            if (!formData.major.trim()) {
+                errors.major = 'Major is required';
+            }
+
+            const gpaNum = parseFloat(formData.gpa);
+            if (!formData.gpa || isNaN(gpaNum)) {
+                errors.gpa = 'GPA is required';
+            } else if (gpaNum < 0 || gpaNum > 4.0) {
+                errors.gpa = 'GPA must be between 0 and 4.0';
+            }
+
+            if (!formData.graduationYear) {
+                errors.graduationYear = 'Graduation year is required';
+            }
+        }
+
+        if (currentStep === 2) {
+            const income = parseInt(formData.familyIncome);
+            if (!formData.familyIncome || isNaN(income)) {
+                errors.familyIncome = 'Family income is required';
+            } else if (income < 0) {
+                errors.familyIncome = 'Income cannot be negative';
+            }
+
+            if (!formData.essay.trim()) {
+                errors.essay = 'Essay is required';
+            } else if (formData.essay.trim().length < 100) {
+                errors.essay = `Essay must be at least 100 characters (current: ${formData.essay.trim().length})`;
+            }
+        }
+
+        setFormErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+    const handleNext = () => {
+        if (validateStep(step)) {
+            setStep(step + 1);
+        }
+    };
+
     const handleBack = () => setStep(step - 1);
 
     const handleSubmit = async () => {
         if (!accountAddress) {
-            alert("Please connect your wallet first!");
+            alert("⚠️ Please connect your Pera Wallet first!");
+            return;
+        }
+
+        // Final validation
+        if (!validateStep(2)) {
+            alert("⚠️ Please fix all form errors before submitting");
             return;
         }
 
@@ -69,15 +136,37 @@ const ApplyPage = () => {
             setTimeout(() => {
                 setIsSubmitting(false);
                 setSubmitStage(0);
-                alert(`Application Submitted! AI Score: ${response.score}/100`);
+                alert(`✅ Application Submitted Successfully!\n\nYour AI Score: ${response.score}/100\n\nYou will be notified if you are selected for funding.`);
+                // Reset form
+                setFormData({
+                    fullName: '',
+                    email: 'student@example.com',
+                    university: '',
+                    major: '',
+                    gpa: '',
+                    graduationYear: '',
+                    familyIncome: '',
+                    essay: ''
+                });
                 setStep(1);
             }, 2000);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
             setIsSubmitting(false);
             setSubmitStage(0);
-            alert("Submission Failed. Check console.");
+
+            // Better error messages
+            let errorMessage = "❌ Submission Failed";
+            if (error.response?.data?.detail) {
+                errorMessage += `\n\n${error.response.data.detail}`;
+            } else if (error.message) {
+                errorMessage += `\n\n${error.message}`;
+            } else {
+                errorMessage += "\n\nPlease check your connection and try again.";
+            }
+
+            alert(errorMessage);
         }
     };
 
