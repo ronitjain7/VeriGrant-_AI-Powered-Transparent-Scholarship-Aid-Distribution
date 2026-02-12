@@ -119,9 +119,9 @@ const Navbar = (props: {
         <Dropdown
           button={
             <Image
-              width="2"
-              height="20"
-              className="h-10 w-10 rounded-full"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-full object-cover"
               src={avatar}
               alt="User"
             />
